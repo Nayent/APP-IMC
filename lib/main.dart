@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: Home(),
   ));
 }
@@ -63,70 +64,77 @@ class _HomeState extends State<Home> {
         ),
         body: SingleChildScrollView(
             child: Form(
-              key: _formkey,
+                key: _formkey,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-              Icon(
-                Icons.person_outline,
-                size: 120,
-                color: Colors.blueAccent,
-              ),
-              Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    validator: (value){
-                      if(value.isEmpty){
-                        return "Insira seu peso";
-                      }
-                    },
-                    controller: weightController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Peso (kg)",
-                        labelStyle: TextStyle(color: Colors.blueAccent)),
-                    style: TextStyle(color: Colors.blueAccent),
-                  )),
-              Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    validator: (value){
-                      if(value.isEmpty){
-                        return "Insira sua altura";
-                      }
-                    },
-                    controller: heightController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Altura (cm)",
-                        labelStyle: TextStyle(color: Colors.blueAccent)),
-                    style: TextStyle(color: Colors.blueAccent),
-                  )),
-              Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: RaisedButton(
-                      onPressed: () {
-                        setState(() {
-                          if(_formkey.currentState.validate()){
-                            _calculoIMC();
-                          }
-                        });
-                      },
-                      color: Colors.blueAccent,
-                      child: Text("Calcular",
+                      Icon(
+                        Icons.person_outline,
+                        size: 120,
+                        color: Colors.blueAccent,
+                      ),
+                      Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "Insira seu peso";
+                              }
+                            },
+                            controller: weightController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: "Peso (kg)",
+                                labelStyle:
+                                    TextStyle(color: Colors.blueAccent)),
+                            style: TextStyle(color: Colors.blueAccent),
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "Insira sua altura";
+                              }
+                            },
+                            controller: heightController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: "Altura (cm)",
+                                labelStyle:
+                                    TextStyle(color: Colors.blueAccent)),
+                            style: TextStyle(color: Colors.blueAccent),
+                          )),
+                      Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: RaisedButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (_formkey.currentState.validate()) {
+                                    _calculoIMC();
+                                  }
+                                });
+                              },
+                              color: Colors.blueAccent,
+                              child: Text("Calcular",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  )))),
+                      Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          "$_info",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          )))),
-              Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  "$_info",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 22, color: Colors.blueAccent),
-                ),
-              )
-            ]))));
+                          style:
+                              TextStyle(fontSize: 22, color: Colors.blueAccent),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Image.asset("assets/tabela_imc.png"),
+                      ),
+                    ]))));
   }
 }
